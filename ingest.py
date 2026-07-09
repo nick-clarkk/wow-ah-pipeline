@@ -76,10 +76,14 @@ def fetch_commodities(access_token: str):
 def extract_rows(payload: dict, snapshot_ts: datetime):
     basket = set(ITEM_BASKET)
     rows = []
+    debug_count = 0
     for auction in payload.get("auctions", []):
         item_id = auction["item"]["id"]
         if item_id not in basket:
             continue
+        if debug_count < 5:
+            print(auction["item"])  # TEMP DEBUG - remove after checking
+            debug_count += 1
         rows.append(
             (
                 snapshot_ts,

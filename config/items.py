@@ -7,12 +7,18 @@
 # Add them here once confirmed, following the same "id,  # Name" format.
 
 ITEM_BASKET = [
-    236780,   # Nocturnal Lotus (herb)
-    236775,   # Azeroot (herb)
-    236771,   # Sanguithorn (herb)
-    236777,   # Argentleaf (herb)
-    237361,   # Refulgent Copper Ore (ore)
-    237366,   # Dazzling Thorium (ore)
-    236965,   # Bright Linen (cloth)
-    237018,   # Arcanoweave (cloth)
+    236780,   # Nocturnal Lotus (single-tier)
+    237366,   # Dazzling Thorium (single-tier)
+    236775,   # Azeroot (Gold)
+    236771,   # Sanguithorn (Gold)
+    236777,   # Argentleaf (Gold)
+    237361,   # Refulgent Copper Ore (Gold)
+    236965,   # Bright Linen (Gold)
+    237017,   # Arcanoweave (Gold)
+    238203,   # Gloaming Alloy (Gold)
+    238205,   # Sterling Alloy (Gold)
+    236779,   # Mana Lily (Gold)
+    244633,   # Infused Scalewoven Hide (Gold)
+    244635,   # Sin'dorei Armor Banding (Gold)
+    238521,   # Void-Tempered Plating (Gold)
 ]
