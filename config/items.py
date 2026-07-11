@@ -19,6 +19,6 @@ ITEM_BASKET = [
     238205,   # Sterling Alloy (Gold)
     236779,   # Mana Lily (Gold)
     244633,   # Infused Scalewoven Hide (Gold)
-    244635,   # Sin'dorei Armor Banding (Gold)
+    244636,   # Sin'dorei Armor Banding (Gold)
     238521,   # Void-Tempered Plating (Gold)
 ]
