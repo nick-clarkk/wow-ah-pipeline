@@ -3,4 +3,5 @@ __pycache__/
 *.pyc
 .venv/
 venv/
-logs/
+logs/ingest.log
+ingest.log
