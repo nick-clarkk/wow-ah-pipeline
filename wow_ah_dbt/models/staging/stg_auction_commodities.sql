@@ -13,7 +13,11 @@ cleaned as (
     from source
     where item_id is not null
       and unit_price is not null
-      and snapshot_timestamp >= '2026-07-10 10:03:05-07'
+      and snapshot_timestamp >= '2026-07-14 00:03:11+00'-- Migrated from unreliable
+      -- local Task Scheduler (unplanned shutdown gaps) to always-on Oracle Cloud
+      -- + cron on 2026-07-14. Pre-migration data excluded rather than backfilled,
+      -- since gaps reflect expected missing observations, not a data quality issue
+      -- to patch.
 ),
 
 thresholds as (

@@ -1,0 +1,218 @@
+Snapshot timestamp (from Blizzard Last-Modified): 2026-07-10T18:03:07+00:00
+Matched 4991 individual auction listings across 14 / 14 basket items.
+Inserted up to 4991 rows (duplicates silently skipped).
+Snapshot timestamp (from Blizzard Last-Modified): 2026-07-10T18:03:07+00:00
+Matched 4991 individual auction listings across 14 / 14 basket items.
+Inserted up to 4991 rows (duplicates silently skipped).
+Snapshot timestamp (from Blizzard Last-Modified): 2026-07-10T18:03:07+00:00
+Matched 4991 individual auction listings across 14 / 14 basket items.
+Inserted up to 4991 rows (duplicates silently skipped).
+Snapshot timestamp (from Blizzard Last-Modified): 2026-07-10T19:03:06+00:00
+Matched 5045 individual auction listings across 14 / 14 basket items.
+Inserted up to 5045 rows (duplicates silently skipped).
+Snapshot timestamp (from Blizzard Last-Modified): 2026-07-10T20:03:06+00:00
+Matched 3665 individual auction listings across 14 / 14 basket items.
+Inserted up to 3665 rows (duplicates silently skipped).
+Traceback (most recent call last):
+  File "C:\Users\nicho\Projects\wow-ah-pipeline\venv\Lib\site-packages\urllib3\connection.py", line 204, in _new_conn
+    sock = connection.create_connection(
+        (self._dns_host, self.port),
+    ...<2 lines>...
+        socket_options=self.socket_options,
+    )
+  File "C:\Users\nicho\Projects\wow-ah-pipeline\venv\Lib\site-packages\urllib3\util\connection.py", line 60, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+               ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nicho\AppData\Local\Python\pythoncore-3.13-64\Lib\socket.py", line 981, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 11001] getaddrinfo failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\nicho\Projects\wow-ah-pipeline\venv\Lib\site-packages\urllib3\connectionpool.py", line 788, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "C:\Users\nicho\Projects\wow-ah-pipeline\venv\Lib\site-packages\urllib3\connectionpool.py", line 488, in _make_request
+    raise new_e
+  File "C:\Users\nicho\Projects\wow-ah-pipeline\venv\Lib\site-packages\urllib3\connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\nicho\Projects\wow-ah-pipeline\venv\Lib\site-packages\urllib3\connectionpool.py", line 1106, in _validate_conn
+    conn.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\nicho\Projects\wow-ah-pipeline\venv\Lib\site-packages\urllib3\connection.py", line 759, in connect
+    self.sock = sock = self._new_conn()
+                       ~~~~~~~~~~~~~~^^
+  File "C:\Users\nicho\Projects\wow-ah-pipeline\venv\Lib\site-packages\urllib3\connection.py", line 211, in _new_conn
+    raise NameResolutionError(self.host, self, e) from e
+urllib3.exceptions.NameResolutionError: HTTPSConnection(host='oauth.battle.net', port=443): Failed to resolve 'oauth.battle.net' ([Errno 11001] getaddrinfo failed)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\nicho\Projects\wow-ah-pipeline\venv\Lib\site-packages\requests\adapters.py", line 696, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "C:\Users\nicho\Projects\wow-ah-pipeline\venv\Lib\site-packages\urllib3\connectionpool.py", line 842, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "C:\Users\nicho\Projects\wow-ah-pipeline\venv\Lib\site-packages\urllib3\util\retry.py", line 543, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='oauth.battle.net', port=443): Max retries exceeded with url: /token (Caused by NameResolutionError("HTTPSConnection(host='oauth.battle.net', port=443): Failed to resolve 'oauth.battle.net' ([Errno 11001] getaddrinfo failed)"))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\nicho\Projects\wow-ah-pipeline\ingest.py", line 137, in <module>
+    main()
+    ~~~~^^
+  File "C:\Users\nicho\Projects\wow-ah-pipeline\ingest.py", line 124, in main
+    token = get_access_token()
+  File "C:\Users\nicho\Projects\wow-ah-pipeline\ingest.py", line 41, in get_access_token
+    resp = requests.post(
+        "https://oauth.battle.net/token",
+    ...<2 lines>...
+        timeout=15,
+    )
+  File "C:\Users\nicho\Projects\wow-ah-pipeline\venv\Lib\site-packages\requests\api.py", line 134, in post
+    return request("post", url, data=data, json=json, **kwargs)
+  File "C:\Users\nicho\Projects\wow-ah-pipeline\venv\Lib\site-packages\requests\api.py", line 71, in request
+    return session.request(method=method, url=url, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nicho\Projects\wow-ah-pipeline\venv\Lib\site-packages\requests\sessions.py", line 651, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\nicho\Projects\wow-ah-pipeline\venv\Lib\site-packages\requests\sessions.py", line 784, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\nicho\Projects\wow-ah-pipeline\venv\Lib\site-packages\requests\adapters.py", line 729, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='oauth.battle.net', port=443): Max retries exceeded with url: /token (Caused by NameResolutionError("HTTPSConnection(host='oauth.battle.net', port=443): Failed to resolve 'oauth.battle.net' ([Errno 11001] getaddrinfo failed)"))
+Snapshot timestamp (from Blizzard Last-Modified): 2026-07-10T23:03:05+00:00
+Matched 3375 individual auction listings across 14 / 14 basket items.
+Inserted up to 3375 rows (duplicates silently skipped).
+Snapshot timestamp (from Blizzard Last-Modified): 2026-07-11T00:03:06+00:00
+Matched 4243 individual auction listings across 14 / 14 basket items.
+Inserted up to 4243 rows (duplicates silently skipped).
+Snapshot timestamp (from Blizzard Last-Modified): 2026-07-11T01:03:07+00:00
+Matched 4061 individual auction listings across 14 / 14 basket items.
+Inserted up to 4061 rows (duplicates silently skipped).
+Snapshot timestamp (from Blizzard Last-Modified): 2026-07-11T02:03:07+00:00
+Matched 3847 individual auction listings across 14 / 14 basket items.
+Inserted up to 3847 rows (duplicates silently skipped).
+Snapshot timestamp (from Blizzard Last-Modified): 2026-07-11T02:03:07+00:00
+Matched 3847 individual auction listings across 14 / 14 basket items.
+Inserted up to 3847 rows (duplicates silently skipped).
+Snapshot timestamp (from Blizzard Last-Modified): 2026-07-11T03:03:07+00:00
+Matched 3969 individual auction listings across 14 / 14 basket items.
+Inserted up to 3969 rows (duplicates silently skipped).
+Snapshot timestamp (from Blizzard Last-Modified): 2026-07-11T04:03:05+00:00
+Matched 3019 individual auction listings across 14 / 14 basket items.
+Inserted up to 3019 rows (duplicates silently skipped).
+Snapshot timestamp (from Blizzard Last-Modified): 2026-07-11T05:03:06+00:00
+Matched 3870 individual auction listings across 14 / 14 basket items.
+Inserted up to 3870 rows (duplicates silently skipped).
+Snapshot timestamp (from Blizzard Last-Modified): 2026-07-11T06:03:06+00:00
+Matched 3927 individual auction listings across 14 / 14 basket items.
+Inserted up to 3927 rows (duplicates silently skipped).
+Snapshot timestamp (from Blizzard Last-Modified): 2026-07-11T07:03:07+00:00
+Matched 3875 individual auction listings across 14 / 14 basket items.
+Inserted up to 3875 rows (duplicates silently skipped).
+Snapshot timestamp (from Blizzard Last-Modified): 2026-07-11T08:03:06+00:00
+Matched 3862 individual auction listings across 14 / 14 basket items.
+Inserted up to 3862 rows (duplicates silently skipped).
+Snapshot timestamp (from Blizzard Last-Modified): 2026-07-11T09:03:04+00:00
+Matched 3898 individual auction listings across 14 / 14 basket items.
+Inserted up to 3898 rows (duplicates silently skipped).
+Snapshot timestamp (from Blizzard Last-Modified): 2026-07-11T10:03:04+00:00
+Matched 4039 individual auction listings across 14 / 14 basket items.
+Inserted up to 4039 rows (duplicates silently skipped).
+Snapshot timestamp (from Blizzard Last-Modified): 2026-07-11T22:03:00+00:00
+Matched 4006 individual auction listings across 14 / 14 basket items.
+Inserted up to 4006 rows (duplicates silently skipped).
+Snapshot timestamp (from Blizzard Last-Modified): 2026-07-11T23:03:00+00:00
+Matched 3662 individual auction listings across 14 / 14 basket items.
+Inserted up to 3662 rows (duplicates silently skipped).
+Snapshot timestamp (from Blizzard Last-Modified): 2026-07-12T00:03:01+00:00
+Matched 3687 individual auction listings across 14 / 14 basket items.
+Inserted up to 3687 rows (duplicates silently skipped).
+Snapshot timestamp (from Blizzard Last-Modified): 2026-07-12T01:03:02+00:00
+Matched 4187 individual auction listings across 14 / 14 basket items.
+Inserted up to 4187 rows (duplicates silently skipped).
+Snapshot timestamp (from Blizzard Last-Modified): 2026-07-12T02:03:03+00:00
+Matched 4696 individual auction listings across 14 / 14 basket items.
+Inserted up to 4696 rows (duplicates silently skipped).
+Snapshot timestamp (from Blizzard Last-Modified): 2026-07-12T03:03:04+00:00
+Matched 5244 individual auction listings across 14 / 14 basket items.
+Inserted up to 5244 rows (duplicates silently skipped).
+Snapshot timestamp (from Blizzard Last-Modified): 2026-07-12T04:03:04+00:00
+Matched 4682 individual auction listings across 14 / 14 basket items.
+Inserted up to 4682 rows (duplicates silently skipped).
+Snapshot timestamp (from Blizzard Last-Modified): 2026-07-12T05:03:06+00:00
+Matched 5221 individual auction listings across 14 / 14 basket items.
+Inserted up to 5221 rows (duplicates silently skipped).
+Snapshot timestamp (from Blizzard Last-Modified): 2026-07-12T06:03:05+00:00
+Matched 4437 individual auction listings across 14 / 14 basket items.
+Inserted up to 4437 rows (duplicates silently skipped).
+Snapshot timestamp (from Blizzard Last-Modified): 2026-07-12T07:03:03+00:00
+Matched 4296 individual auction listings across 14 / 14 basket items.
+Inserted up to 4296 rows (duplicates silently skipped).
+Snapshot timestamp (from Blizzard Last-Modified): 2026-07-12T08:03:02+00:00
+Matched 4363 individual auction listings across 14 / 14 basket items.
+Inserted up to 4363 rows (duplicates silently skipped).
+Snapshot timestamp (from Blizzard Last-Modified): 2026-07-12T09:03:00+00:00
+Matched 4680 individual auction listings across 14 / 14 basket items.
+Inserted up to 4680 rows (duplicates silently skipped).
+Snapshot timestamp (from Blizzard Last-Modified): 2026-07-12T10:03:00+00:00
+Matched 4716 individual auction listings across 14 / 14 basket items.
+Inserted up to 4716 rows (duplicates silently skipped).
+Snapshot timestamp (from Blizzard Last-Modified): 2026-07-12T18:03:03+00:00
+Matched 5303 individual auction listings across 14 / 14 basket items.
+Inserted up to 5303 rows (duplicates silently skipped).
+Snapshot timestamp (from Blizzard Last-Modified): 2026-07-12T19:03:04+00:00
+Matched 4726 individual auction listings across 14 / 14 basket items.
+Inserted up to 4726 rows (duplicates silently skipped).
+Snapshot timestamp (from Blizzard Last-Modified): 2026-07-12T20:03:05+00:00
+Matched 5065 individual auction listings across 14 / 14 basket items.
+Inserted up to 5065 rows (duplicates silently skipped).
+Snapshot timestamp (from Blizzard Last-Modified): 2026-07-12T21:03:06+00:00
+Matched 4925 individual auction listings across 14 / 14 basket items.
+Inserted up to 4925 rows (duplicates silently skipped).
+Snapshot timestamp (from Blizzard Last-Modified): 2026-07-13T04:03:10+00:00
+Matched 3606 individual auction listings across 14 / 14 basket items.
+Inserted up to 3606 rows (duplicates silently skipped).
+Snapshot timestamp (from Blizzard Last-Modified): 2026-07-13T05:03:11+00:00
+Matched 3500 individual auction listings across 14 / 14 basket items.
+Inserted up to 3500 rows (duplicates silently skipped).
+Snapshot timestamp (from Blizzard Last-Modified): 2026-07-13T06:03:09+00:00
+Matched 2950 individual auction listings across 14 / 14 basket items.
+Inserted up to 2950 rows (duplicates silently skipped).
+Snapshot timestamp (from Blizzard Last-Modified): 2026-07-13T07:03:07+00:00
+Matched 1828 individual auction listings across 14 / 14 basket items.
+Inserted up to 1828 rows (duplicates silently skipped).
+Snapshot timestamp (from Blizzard Last-Modified): 2026-07-13T08:03:06+00:00
+Matched 2703 individual auction listings across 14 / 14 basket items.
+Inserted up to 2703 rows (duplicates silently skipped).
+Snapshot timestamp (from Blizzard Last-Modified): 2026-07-13T09:03:07+00:00
+Matched 3203 individual auction listings across 14 / 14 basket items.
+Inserted up to 3203 rows (duplicates silently skipped).
+Snapshot timestamp (from Blizzard Last-Modified): 2026-07-13T21:03:08+00:00
+Matched 3887 individual auction listings across 14 / 14 basket items.
+Inserted up to 3887 rows (duplicates silently skipped).
+Snapshot timestamp (from Blizzard Last-Modified): 2026-07-13T22:03:09+00:00
+Matched 2799 individual auction listings across 14 / 14 basket items.
+Inserted up to 2799 rows (duplicates silently skipped).
+Snapshot timestamp (from Blizzard Last-Modified): 2026-07-13T23:03:11+00:00
+Matched 3424 individual auction listings across 14 / 14 basket items.
+Inserted up to 3424 rows (duplicates silently skipped).
+Snapshot timestamp (from Blizzard Last-Modified): 2026-07-14T00:03:11+00:00
+Matched 3619 individual auction listings across 14 / 14 basket items.
+Inserted up to 3619 rows (duplicates silently skipped).
