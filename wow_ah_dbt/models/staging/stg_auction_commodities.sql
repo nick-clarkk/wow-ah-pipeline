@@ -1,7 +1,6 @@
 with source as (
     select * from {{ source('raw', 'raw_auction_commodities') }}
 ),
-
 cleaned as (
     select
         auction_id,
@@ -19,7 +18,6 @@ cleaned as (
       -- since gaps reflect expected missing observations, not a data quality issue
       -- to patch.
 ),
-
 thresholds as (
     select
         item_id,
@@ -29,15 +27,14 @@ thresholds as (
     from cleaned
     group by item_id, snapshot_timestamp
 ),
-
 bounds as (
     select
         item_id,
         snapshot_timestamp,
-        q3_price_gold + 1.5 * (q3_price_gold - q1_price_gold) as upper_bound_gold
+        q3_price_gold + 1.5 * (q3_price_gold - q1_price_gold) as upper_bound_gold,
+        greatest(q1_price_gold - 1.5 * (q3_price_gold - q1_price_gold), 0) as lower_bound_gold
     from thresholds
 )
-
 select
     c.auction_id,
     c.item_id,
@@ -50,3 +47,4 @@ join bounds b
     on c.item_id = b.item_id
     and c.snapshot_timestamp = b.snapshot_timestamp
 where c.unit_price_gold <= b.upper_bound_gold
+  and c.unit_price_gold >= b.lower_bound_gold
