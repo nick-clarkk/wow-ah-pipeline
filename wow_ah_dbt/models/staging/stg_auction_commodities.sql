@@ -32,7 +32,13 @@ bounds as (
         item_id,
         snapshot_timestamp,
         q3_price_gold + 1.5 * (q3_price_gold - q1_price_gold) as upper_bound_gold,
-        greatest(q1_price_gold - 1.5 * (q3_price_gold - q1_price_gold), 0) as lower_bound_gold
+        -- Pure IQR lower bound can go negative (or near-zero) on right-skewed
+        -- snapshots, letting mispriced near-zero listings slip through.
+        -- Floor at 10% of Q1 as a practical backstop against that failure mode.
+        greatest(
+            q1_price_gold - 1.5 * (q3_price_gold - q1_price_gold),
+            q1_price_gold * 0.1
+        ) as lower_bound_gold
     from thresholds
 )
 select
